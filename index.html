@@ -4,99 +4,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cotización Fibra Entel</title>
+<title>Cotizador Fibra Entel</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#edf3fa;font-family:Arial,sans-serif;color:#163760}
 header{background:linear-gradient(120deg,#003c8e,#087bcb);color:white;text-align:center;padding:18px}
 header img{width:min(340px,90%);max-height:125px;object-fit:contain}
-header h1{font-size:25px}
+header h1{font-size:26px;margin:12px 0}
 main{max-width:930px;margin:20px auto;padding:0 14px 30px}
-.panel{background:white;padding:20px;border-radius:15px;margin:15px 0;box-shadow:0 3px 16px #002e6416}
-h2{font-size:18px}
+.panel{background:white;padding:22px;border-radius:15px;margin:15px 0;box-shadow:0 3px 16px #002e6416}
+h2{font-size:18px;margin:0 0 15px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 label{display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
-input,select{width:100%;padding:12px;border:1px solid #c4d1e0;border-radius:9px;font-size:15px}
-.price{background:#eaf5ff;padding:18px;border-radius:12px;margin-top:16px}
-.amount{font-size:35px;font-weight:800;color:#0062b8}
-.detail{padding:8px 0;border-bottom:1px solid #d0e4f3}
-.free{color:#087d4b;font-weight:bold;margin-top:12px}
-button{border:0;border-radius:9px;background:#006ac5;color:white;padding:13px 16px;font-size:15px;font-weight:bold;cursor:pointer}
+input,select{width:100%;font-size:15px;border:1px solid #c4d1e0;border-radius:9px;padding:12px;background:white;color:#18395d}
+.price{background:#eaf5ff;border-radius:12px;padding:18px;margin-top:16px}
+.amount{font-size:35px;color:#0062b8;font-weight:800;margin:5px 0 10px}
+.detail{padding:10px 0;border-bottom:1px solid #d0e4f3}
+.free{color:#087d4b;font-weight:bold;padding-top:12px}
+button{cursor:pointer;border:0;border-radius:9px;background:#006ac5;color:white;font-weight:bold;padding:13px 17px;font-size:15px}
 button.orange{background:#f7781b}
 button.alt{background:#e4effc;color:#064e94}
+button:disabled{opacity:.6}
 .actions{display:flex;gap:10px;flex-wrap:wrap}
-.muted{font-size:12px;color:#5b718c;line-height:1.5}
-table{width:100%;border-collapse:collapse;font-size:12px}
-td,th{border-bottom:1px solid #ddd;padding:7px;text-align:left}
-td input{min-width:85px;padding:6px}
-#status{color:#0753a3;font-size:13px}
-@media(max-width:620px){.grid{grid-template-columns:1fr}.panel{padding:16px}}
+.muted{color:#5b718c;font-size:12px;line-height:1.5}
+summary{font-weight:bold;cursor:pointer}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:8px;border-bottom:1px solid #dfe7f0;text-align:left}
+td input{min-width:90px;padding:7px;font-size:13px}
+#status{font-size:13px;color:#095b9b;min-height:19px}
+@media(max-width:620px){
+.grid{grid-template-columns:1fr}
+.panel{padding:16px}
+header h1{font-size:23px}
+}
 </style>
 </head>
 <body>
 <header>
-<img src="encabezado-entel.png" alt="Entel">
+<img src="encabezado-entel.png" alt="Entel" onerror="this.style.display='none'">
 <h1>Cotización Fibra Entel</h1>
 </header>
 <main>
 <section class="panel">
 <h2>1. Selecciona el plan</h2>
 <div class="grid">
-<div><label>Servicio</label><select id="service">
+<div><label>Servicio</label>
+<select id="service">
 <option value="fibra">Internet Fibra</option>
 <option value="full">Dúo Fibra + TV Full+</option>
 <option value="light">Dúo Fibra + TV Light</option>
 </select></div>
-<div><label>Velocidad</label><select id="speed">
+<div><label>Velocidad</label>
+<select id="speed">
 <option value="600">600 megas</option>
 <option value="800">800 megas</option>
 <option value="1000">1 Giga</option>
 </select></div>
-<div><label>Tipo de tarifa</label><select id="offer">
+<div><label>Tipo de tarifa</label>
+<select id="offer">
 <option value="normal">Precio normal</option>
 <option value="destacada">Oferta destacada</option>
 <option value="super">Oferta súper destacada</option>
 </select></div>
 </div>
-<div id="decoBox" style="display:none;margin-top:15px">
-<label>Decodificadores adicionales ($4.990 cada uno)</label>
+<div id="decoBox" style="display:none;margin-top:14px;padding:14px;background:#eef5ff;border-radius:10px">
+<label>Decodificadores adicionales ($4.990 mensuales c/u)</label>
 <select id="decos">
 <option value="0">Sin decos adicionales</option>
-<option value="1">1 deco</option>
-<option value="2">2 decos</option>
-<option value="3">3 decos</option>
-<option value="4">4 decos</option>
-<option value="5">5 decos</option>
+<option value="1">1 deco adicional</option>
+<option value="2">2 decos adicionales</option>
+<option value="3">3 decos adicionales</option>
+<option value="4">4 decos adicionales</option>
+<option value="5">5 decos adicionales</option>
 </select>
 <p id="decoInfo" class="muted"></p>
 </div>
 <div class="price">
-<div>Total mensual</div>
-<div id="amount" class="amount"></div>
+<div>Total mensual seleccionado</div>
+<div class="amount" id="amount"></div>
 <div id="discount"></div>
 <div class="free">✓ Instalación GRATIS</div>
 <p id="benefits" class="muted"></p>
 </div>
 </section>
+
 <section class="panel">
 <h2>2. Datos del cliente</h2>
 <div class="grid">
 <div><label>Nombre completo</label><input id="clientName"></div>
-<div><label>RUT</label><input id="rut"></div>
+<div><label>RUT</label><input id="rut" placeholder="12.345.678-9"></div>
 <div><label>Dirección de instalación</label><input id="address"></div>
 <div><label>Correo electrónico</label><input id="email" type="email"></div>
-<div><label>Celular</label><input id="phone" type="tel"></div>
+<div><label>Número de celular</label><input id="phone" type="tel"></div>
 </div>
 </section>
+
 <section class="panel">
 <h2>3. Datos del ejecutivo</h2>
 <div class="grid">
-<div><label>Nombre</label><input id="agentName"></div>
-<div><label>Teléfono</label><input id="agentPhone"></div>
-<div><label>Correo</label><input id="agentEmail"></div>
+<div><label>Nombre del ejecutivo</label><input id="agentName"></div>
+<div><label>Teléfono del ejecutivo</label><input id="agentPhone" type="tel"></div>
+<div><label>Correo del ejecutivo</label><input id="agentEmail" type="email"></div>
 </div>
-<p class="muted">Los datos del ejecutivo se guardan en este dispositivo.</p>
+<p class="muted">Los datos del ejecutivo se guardan en este navegador.</p>
 </section>
+
 <section class="panel">
 <h2>4. Generar cotización</h2>
 <div class="actions">
@@ -104,61 +116,108 @@ td input{min-width:85px;padding:6px}
 <button id="share" class="orange">Compartir PDF por WhatsApp</button>
 <button id="clear" class="alt">Limpiar cliente</button>
 </div>
-<p id="status"></p>
+<p id="status" aria-live="polite"></p>
 </section>
+
 <section class="panel">
 <details>
-<summary><b>⚙ Editar precios</b></summary>
-<p class="muted">Los precios editados se guardan en este dispositivo.</p>
+<summary>⚙ Editar precios</summary>
+<p class="muted">Los cambios se guardan en este dispositivo.</p>
 <div style="overflow:auto">
 <table>
 <thead><tr><th>Plan</th><th>Normal</th><th>Destacada</th><th>Súper destacada</th></tr></thead>
 <tbody id="priceRows"></tbody>
 </table>
 </div>
-<p><button id="savePrices">Guardar precios</button>
-<button id="resetPrices" class="alt">Restaurar</button></p>
+<p>
+<button id="savePrices">Guardar precios</button>
+<button id="resetPrices" class="alt">Restaurar originales</button>
+</p>
 </details>
 </section>
 </main>
+
 <script>
 const $=id=>document.getElementById(id);
 const money=n=>'$'+Number(n).toLocaleString('es-CL');
 const DEFAULT={
-fibra:{600:[22990,13990,11990],800:[25990,15990,12990],1000:[33990,19990,16990]},
-full:{600:[49490,28990,25990],800:[52490,29990,27990],1000:[60490,33990,30990]},
-light:{600:[28990,25990,23990],800:[29990,26990,24990],1000:[33990,30990,28990]}
+fibra:{
+600:[22990,13990,11990],
+800:[25990,15990,12990],
+1000:[33990,19990,16990]
+},
+full:{
+600:[49490,28990,25990],
+800:[52490,29990,27990],
+1000:[60490,33990,30990]
+},
+light:{
+600:[28990,25990,23990],
+800:[29990,26990,24990],
+1000:[33990,30990,28990]
+}
 };
-const names={fibra:'Internet Fibra',full:'Dúo Fibra + TV Full+',light:'Dúo Fibra + TV Light'};
-const offers={normal:'Precio normal',destacada:'Oferta destacada',super:'Oferta súper destacada'};
+const names={
+fibra:'Internet Fibra',
+full:'Dúo Fibra + TV Full+',
+light:'Dúo Fibra + TV Light'
+};
+const offers={
+normal:'Precio normal',
+destacada:'Oferta destacada',
+super:'Oferta súper destacada'
+};
 const keys=['normal','destacada','super'];
 let rates;
-try{rates=JSON.parse(localStorage.getItem('entelRates'))||JSON.parse(JSON.stringify(DEFAULT))}
-catch{rates=JSON.parse(JSON.stringify(DEFAULT))}
+try{
+rates=JSON.parse(localStorage.getItem('entelRates'))||JSON.parse(JSON.stringify(DEFAULT));
+}catch(e){
+rates=JSON.parse(JSON.stringify(DEFAULT));
+}
 const status=t=>$('status').textContent=t;
+
 function selected(){
-const s=$('service').value,v=$('speed').value,o=$('offer').value;
+const s=$('service').value;
+const v=$('speed').value;
+const o=$('offer').value;
 const base=rates[s][v][keys.indexOf(o)];
-const decos=s==='fibra'?0:Number($('decos').value);
-return{s,v,o,base,decos,normal:rates[s][v][0],decoCost:decos*4990,value:base+decos*4990};
+const decos=s==='fibra'?0:Number($('decos').value)||0;
+return{
+s,v,o,base,decos,
+normal:rates[s][v][0],
+decoCost:decos*4990,
+value:base+decos*4990
+};
 }
 function render(){
 const d=selected();
 $('decoBox').style.display=d.s==='fibra'?'none':'block';
-$('decoInfo').textContent=d.decos?`${d.decos} deco(s): ${money(d.decoCost)} mensuales`:'Sin decos adicionales';
+$('decoInfo').textContent=d.decos?
+`${d.decos} deco(s): ${money(d.decoCost)} mensuales`:
+'Sin decos adicionales';
 $('amount').textContent=money(d.value);
-$('discount').innerHTML=d.o==='normal'?'Precio regular':`<div class="detail"><b>Promoción por 12 meses</b></div><div class="detail">Precio desde mes 13: ${money(d.normal+d.decoCost)}</div><div class="detail">Ahorro mensual: ${money(d.normal-d.base)}</div>`;
-$('benefits').textContent=d.s==='full'?'TV Full+: 98 canales y aplicaciones incluidas.':d.s==='light'?'TV Light: 59 canales, Disney+ Premium y Entel TV.':'';
+$('discount').innerHTML=d.o==='normal'?
+'<div class="detail">Precio regular sin promoción</div>':
+`<div class="detail"><b>Promoción por 12 meses</b></div>
+<div class="detail">Precio normal desde mes 13: <b>${money(d.normal+d.decoCost)}</b></div>
+<div class="detail">Ahorro mensual: <b>${money(d.normal-d.base)}</b></div>`;
+$('benefits').textContent=d.s==='full'?
+'TV Full+: 98 canales y aplicaciones incluidas.':
+d.s==='light'?
+'TV Light: 59 canales, Disney+ Premium y Entel TV.':'';
 }
 ['service','speed','offer','decos'].forEach(id=>$(id).addEventListener('change',render));
+
 function priceTable(){
 let html='';
-for(const s of ['fibra','full','light'])
+for(const s of ['fibra','full','light']){
 for(const v of ['600','800','1000']){
 html+=`<tr><td>${names[s]} ${v==='1000'?'1 Giga':v+' M'}</td>`;
-rates[s][v].forEach((n,i)=>html+=`<td><input type="number" min="0" data-s="${s}" data-v="${v}" data-i="${i}" value="${n}"></td>`);
+rates[s][v].forEach((n,i)=>{
+html+=`<td><input type="number" min="0" data-s="${s}" data-v="${v}" data-i="${i}" value="${n}"></td>`;
+});
 html+='</tr>';
-}
+}}
 $('priceRows').innerHTML=html;
 }
 $('savePrices').onclick=()=>{
@@ -166,12 +225,14 @@ document.querySelectorAll('[data-s]').forEach(e=>{
 rates[e.dataset.s][e.dataset.v][+e.dataset.i]=Math.max(0,Math.round(+e.value||0));
 });
 localStorage.setItem('entelRates',JSON.stringify(rates));
-render();status('Precios guardados.');
+render();
+status('Precios guardados.');
 };
 $('resetPrices').onclick=()=>{
 rates=JSON.parse(JSON.stringify(DEFAULT));
 localStorage.removeItem('entelRates');
-priceTable();render();status('Precios restaurados.');
+priceTable();render();
+status('Precios restaurados.');
 };
 ['agentName','agentPhone','agentEmail'].forEach(id=>{
 $(id).value=localStorage.getItem('entel_'+id)||'';
@@ -182,7 +243,8 @@ $('clear').onclick=()=>{
 status('Datos del cliente limpiados.');
 };
 function details(){
-return{...selected(),
+return{
+...selected(),
 client:$('clientName').value.trim(),
 rut:$('rut').value.trim(),
 address:$('address').value.trim(),
@@ -190,30 +252,55 @@ email:$('email').value.trim(),
 phone:$('phone').value.trim(),
 agent:$('agentName').value.trim(),
 agentPhone:$('agentPhone').value.trim(),
-agentEmail:$('agentEmail').value.trim()};
+agentEmail:$('agentEmail').value.trim()
+};
 }
 function validate(d){
 if(!d.client||!d.rut||!d.address||!d.email||!d.phone||!d.agent||!d.agentPhone||!d.agentEmail){
-status('Completa los datos del cliente y ejecutivo.');
+status('Completa los datos del cliente y del ejecutivo.');
 return false;
 }
 return true;
 }
 function esc(x){
-return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+return String(x??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+}[c]));
 }
 function stamp(){
-return new Intl.DateTimeFormat('es-CL',{timeZone:'America/Santiago',dateStyle:'short',timeStyle:'short'}).format(new Date());
+return new Intl.DateTimeFormat('es-CL',{
+timeZone:'America/Santiago',
+dateStyle:'short',
+timeStyle:'short'
+}).format(new Date());
 }
+
 function pdfHtml(d){
 const field=(a,b)=>`<div class="field"><span>${esc(a)}</span><b>${esc(b)}</b></div>`;
-const apps=d.s==='full'?`<div class="apps"><h3>TV FULL+ · 98 CANALES</h3><img src="apps-tv-full.png"><div>Apple TV · Fanatiz · YouTube Premium Lite · Disney+ · HBO Max · Entel TV</div></div>`:
-d.s==='light'?`<div class="apps"><h3>TV LIGHT · 59 CANALES</h3><img src="apps-tv-light.png"><div>Disney+ Premium · Entel TV · 59 canales</div></div>`:'';
-return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><base href="${esc(location.href)}"><style>
+const apps=d.s==='full'?
+`<div class="apps">
+<h3>TV FULL+ · 98 CANALES</h3>
+<img src="apps-tv-full.png" alt="Aplicaciones TV Full+">
+<div>Apple TV · Fanatiz · YouTube Premium Lite · Disney+ · HBO Max · Entel TV</div>
+</div>`:
+d.s==='light'?
+`<div class="apps">
+<h3>TV LIGHT · 59 CANALES</h3>
+<img src="apps-tv-light.png" alt="Aplicaciones TV Light">
+<div>Disney+ Premium · Entel TV · 59 canales</div>
+</div>`:'';
+
+return `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<base href="${esc(location.href)}">
+<style>
 @page{size:letter;margin:9mm}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:#173b65;font-size:10pt;background:white}
-.sheet{max-width:196mm;margin:auto}
+html,body{margin:0;padding:0;background:white}
+body{font-family:Arial,sans-serif;color:#173b65;font-size:10pt}
+.sheet{width:100%;max-width:196mm;margin:auto}
 .top{background:#0753a3;color:white;padding:11px 16px;border-radius:7px;display:flex;justify-content:space-between;align-items:center}
 .top h1{font-size:18pt;margin:0}
 .top img{width:95px;max-height:50px;object-fit:contain}
@@ -227,43 +314,89 @@ h2{font-size:11pt;color:#0753a3;margin:12px 0 7px;border-bottom:1px solid #d8e3e
 .green{color:#128047}
 .apps{border:1px solid #cbdcf0;border-radius:9px;padding:9px;margin-top:12px;text-align:center}
 .apps h3{margin:0 0 6px;color:#0753a3;font-size:11pt}
-.apps img{max-width:100%;max-height:82px;object-fit:contain}
+.apps img{display:block;max-width:100%;max-height:82px;width:auto;height:auto;object-fit:contain;margin:0 auto 5px}
 .apps div{font-size:9pt;font-weight:bold}
 .footer{margin-top:12px;border-top:1px solid #cbdcf0;padding-top:5px}
 .date{font-size:9pt;color:#64768d;text-align:right;margin-top:9px}
-.banner{display:block;width:100%;max-height:78mm;object-fit:contain;margin-top:12px}
-.sheet:has(.apps) .banner{max-height:52mm}
-.note{font-size:7.7pt;color:#718096;margin-top:6px}
-@media print{.top,.hero,.apps{-webkit-print-color-adjust:exact;print-color-adjust:exact;break-inside:avoid}}
-</style></head><body><div class="sheet">
-<div class="top"><div><h1>COTIZACIÓN FIBRA ENTEL</h1><small>Propuesta comercial de servicios hogar</small></div><img src="logo-entel.png"></div>
+.bannerBox{
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:12px auto 5px;
+break-inside:avoid;
+}
+.banner{
+display:block;
+width:auto;
+height:auto;
+max-width:110mm;
+max-height:52mm;
+object-fit:contain;
+margin:0 auto;
+}
+.note{font-size:7.7pt;color:#718096;margin-top:6px;text-align:center}
+@media print{
+.top,.hero,.apps{
+-webkit-print-color-adjust:exact;
+print-color-adjust:exact;
+}
+.bannerBox{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<div class="top">
+<div><h1>COTIZACIÓN FIBRA ENTEL</h1><small>Propuesta comercial de servicios hogar</small></div>
+<img src="logo-entel.png" alt="Entel">
+</div>
 <h2>DATOS DEL CLIENTE</h2>
-<div class="fields">${field('Nombre:',d.client)}${field('RUT:',d.rut)}${field('Dirección:',d.address)}${field('Teléfono:',d.phone)}${field('Correo:',d.email)}</div>
+<div class="fields">
+${field('Nombre:',d.client)}
+${field('RUT:',d.rut)}
+${field('Dirección:',d.address)}
+${field('Teléfono:',d.phone)}
+${field('Correo:',d.email)}
+</div>
 <h2>DETALLE DEL PLAN</h2>
-<div class="fields">${field('Servicio:',names[d.s])}${field('Velocidad:',d.v==='1000'?'1 Giga':d.v+' megas')}${field('Oferta:',offers[d.o])}${d.s!=='fibra'?field('Decos adicionales:',d.decos+' x $4.990 = '+money(d.decoCost)+'/mes'):''}</div>
-<div class="hero"><b>TOTAL MENSUAL</b><div class="value">${money(d.value)}</div>${d.decos?`<div>Plan ${money(d.base)} + decos ${money(d.decoCost)}</div>`:''}<p><b>Instalación: <span class="green">GRATIS</span></b> · ${d.o==='normal'?'Tarifa normal':'Descuento por 12 meses'}</p></div>
+<div class="fields">
+${field('Servicio:',names[d.s])}
+${field('Velocidad:',d.v==='1000'?'1 Giga':d.v+' megas')}
+${field('Oferta:',offers[d.o])}
+${d.s!=='fibra'?field('Decos adicionales:',d.decos+' x $4.990 = '+money(d.decoCost)+'/mes'):''}
+</div>
+<div class="hero">
+<b>TOTAL MENSUAL</b>
+<div class="value">${money(d.value)}</div>
+${d.decos?`<div>Plan ${money(d.base)} + decos ${money(d.decoCost)}</div>`:''}
+<p><b>Instalación: <span class="green">GRATIS</span></b> · ${d.o==='normal'?'Tarifa normal':'Descuento por 12 meses'}</p>
+</div>
 ${apps}
-<div class="footer"><h2>DATOS DEL EJECUTIVO</h2><div class="fields">${field('Nombre:',d.agent)}${field('Teléfono:',d.agentPhone)}${field('Correo:',d.agentEmail)}</div></div>
+<div class="footer">
+<h2>DATOS DEL EJECUTIVO</h2>
+<div class="fields">
+${field('Nombre:',d.agent)}
+${field('Teléfono:',d.agentPhone)}
+${field('Correo:',d.agentEmail)}
+</div>
+</div>
 <div class="date">Fecha y hora de emisión (Chile): ${esc(stamp())}</div>
-<img class="banner" src="banner-fibra.png" alt="Contrata la fibra más confiable">
+<div class="bannerBox">
+<img class="banner" src="banner-fibra.png" alt="Banner Entel">
+</div>
 <div class="note">Cotización referencial sujeta a factibilidad técnica y condiciones comerciales vigentes.</div>
-</div></body></html>`;
+</div>
+</body>
+</html>`;
 }
-function openPrint(){
-const d=details();
-if(!validate(d))return;
-const w=window.open('','_blank');
-if(!w){status('Permite ventanas emergentes en Chrome.');return}
-w.document.open();
-w.document.write(pdfHtml(d));
-w.document.close();
-w.onload=()=>setTimeout(()=>w.print(),600);
-status('Selecciona Guardar como PDF.');
-}
+
 function loadScript(url){
 return new Promise((ok,fail)=>{
 const s=document.createElement('script');
-s.src=url;s.onload=ok;s.onerror=fail;
+s.src=url;
+s.onload=ok;
+s.onerror=()=>fail(new Error('No se pudo cargar la biblioteca PDF'));
 document.head.appendChild(s);
 });
 }
@@ -275,27 +408,28 @@ if(!window.jspdf?.jsPDF){
 await loadScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js');
 }
 }
+
 async function createPdf(d){
 await ensureLibraries();
 const frame=document.createElement('iframe');
 frame.style.cssText='position:fixed;left:-10000px;top:0;width:816px;height:1056px;border:0';
 document.body.appendChild(frame);
 try{
-frame.contentDocument.open();
-frame.contentDocument.write(pdfHtml(d));
-frame.contentDocument.close();
-await new Promise(resolve=>{
-let done=false;
-const finish=()=>{if(!done){done=true;resolve()}};
-frame.onload=finish;
-setTimeout(finish,1500);
-});
 const fd=frame.contentDocument;
+fd.open();
+fd.write(pdfHtml(d));
+fd.close();
+await new Promise(resolve=>{
+if(fd.readyState==='complete')return resolve();
+frame.onload=resolve;
+setTimeout(resolve,1500);
+});
 await Promise.all(Array.from(fd.images).map(im=>{
 if(im.complete)return Promise.resolve();
 return new Promise(resolve=>{
-im.onload=resolve;im.onerror=resolve;
-setTimeout(resolve,2000);
+im.onload=resolve;
+im.onerror=resolve;
+setTimeout(resolve,3000);
 });
 }));
 if(fd.fonts?.ready)await fd.fonts.ready;
@@ -308,16 +442,65 @@ logging:false,
 windowWidth:816
 });
 const {jsPDF}=window.jspdf;
-const doc=new jsPDF({unit:'mm',format:'letter',compress:true});
-const pw=215.9,ph=279.4,margin=9;
-const ratio=Math.min((pw-2*margin)/canvas.width,(ph-2*margin)/canvas.height);
-const w=canvas.width*ratio,h=canvas.height*ratio;
-doc.addImage(canvas.toDataURL('image/jpeg',0.92),'JPEG',(pw-w)/2,margin,w,h,undefined,'FAST');
+const doc=new jsPDF({
+unit:'mm',
+format:'letter',
+compress:true
+});
+const pw=215.9;
+const ph=279.4;
+const margin=9;
+const ratio=Math.min(
+(pw-2*margin)/canvas.width,
+(ph-2*margin)/canvas.height
+);
+const w=canvas.width*ratio;
+const h=canvas.height*ratio;
+doc.addImage(
+canvas.toDataURL('image/jpeg',0.94),
+'JPEG',
+(pw-w)/2,
+margin,
+w,
+h,
+undefined,
+'FAST'
+);
 return doc.output('blob');
 }finally{
 frame.remove();
 }
 }
+
+function downloadBlob(blob,filename){
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;
+a.download=filename;
+document.body.appendChild(a);
+a.click();
+a.remove();
+setTimeout(()=>URL.revokeObjectURL(url),30000);
+}
+
+async function savePdf(){
+const d=details();
+if(!validate(d))return;
+const btn=$('pdf');
+btn.disabled=true;
+btn.textContent='Generando PDF...';
+try{
+const blob=await createPdf(d);
+downloadBlob(blob,'Cotizacion_Fibra_Entel.pdf');
+status('PDF generado y descargado.');
+}catch(e){
+status('Error al generar PDF: '+e.message);
+}finally{
+btn.disabled=false;
+btn.textContent='Guardar como PDF';
+}
+}
+
 async function sharePdf(){
 const d=details();
 if(!validate(d))return;
@@ -326,25 +509,33 @@ btn.disabled=true;
 btn.textContent='Preparando PDF...';
 try{
 const blob=await createPdf(d);
-const file=new File([blob],'Cotizacion_Fibra_Entel.pdf',{type:'application/pdf'});
+const file=new File(
+[blob],
+'Cotizacion_Fibra_Entel.pdf',
+{type:'application/pdf'}
+);
 if(navigator.canShare?.({files:[file]})&&navigator.share){
 status('Selecciona WhatsApp en el menú de compartir.');
-await navigator.share({files:[file],title:'Cotización Fibra Entel'});
+await navigator.share({
+files:[file],
+title:'Cotización Fibra Entel'
+});
+status('PDF entregado al menú de compartir.');
 }else{
-const url=URL.createObjectURL(blob);
-const a=document.createElement('a');
-a.href=url;a.download=file.name;a.click();
-setTimeout(()=>URL.revokeObjectURL(url),10000);
-status('PDF descargado. Adjunta el archivo en WhatsApp.');
+downloadBlob(blob,file.name);
+status('PDF descargado. Adjunta el archivo desde WhatsApp.');
 }
 }catch(e){
-if(e.name!=='AbortError')status('No se pudo generar el PDF: '+e.message);
+if(e.name!=='AbortError'){
+status('Error al compartir: '+e.message);
+}
 }finally{
 btn.disabled=false;
 btn.textContent='Compartir PDF por WhatsApp';
 }
 }
-$('pdf').onclick=openPrint;
+
+$('pdf').onclick=savePdf;
 $('share').onclick=sharePdf;
 priceTable();
 render();
